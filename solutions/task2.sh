@@ -21,5 +21,4 @@ echo \\n
 echo Step 4/4: create table "users" and inserting data from json...
 cat ./solutions/create_and_update_table.sql | curl -H "$HEADER_USER" -H "$HEADER_PASS" "http://localhost:8123/" -d @-
 
-rm ./clickhouse_data/user_files/data.json
 rm download_link.json
