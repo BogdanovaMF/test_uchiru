@@ -1,15 +1,15 @@
 version: "3.0"
 services:
 
-  ubuntu:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: my_ubuntu
-    volumes:
-      - ./clickhouse-data:/var/lib/clickhouse/
-    networks:
-      - my_network
+  # json_load_job:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: json_load_job
+  #   volumes:
+  #     - ./clickhouse_data:/var/lib/clickhouse/
+  #   networks:
+  #     - my_network
 
   clickhouse:
     image: yandex/clickhouse-server
@@ -21,7 +21,8 @@ services:
       timeout: 2s
       retries: 16
     volumes:
-      - ./clickhouse-data:/var/lib/clickhouse/
+      - ./clickhouse_data:/var/lib/clickhouse/
+      - ./solutions:/opt
     environment:
       - CLICKHOUSE_USER=default
       - CLICKHOUSE_PASSWORD=12345
