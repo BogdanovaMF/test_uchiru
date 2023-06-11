@@ -9,8 +9,6 @@ RUN \
     apt-get install -y byobu curl git htop man unzip vim wget && \
     rm -rf /var/lib/apt/lists/*
 ADD soluutions/task2.sh /root/task2.sh
-ADD soluutions/task2.sql /root/task2.sql
-
 
 WORKDIR /root
 
