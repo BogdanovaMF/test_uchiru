@@ -10,7 +10,7 @@ RUN \
     rm -rf /var/lib/apt/lists/*
 ADD soluutions/task2.sh /root/task2.sh
 ADD soluutions/task2.sql /root/task2.sql
-ADD event-data.json /root/event-data.json
+ADD file.json /root/file.json
 
 
 WORKDIR /root
