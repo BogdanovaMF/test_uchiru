@@ -1,5 +1,16 @@
 version: "3.0"
 services:
+
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_ubuntu
+    volumes:
+      - ./clickhouse-data:/var/lib/clickhouse/
+    networks:
+      - my_network
+
   clickhouse:
     image: yandex/clickhouse-server
     ports:
@@ -14,16 +25,22 @@ services:
     environment:
       - CLICKHOUSE_USER=default
       - CLICKHOUSE_PASSWORD=12345
+    networks:
+      - my_network
 
   tabix:
-      image: spoonest/clickhouse-tabix-web-client
-      ports:
-        - "8080:80"
-      depends_on:
-        - clickhouse
-      restart: unless-stopped
-      environment:
-        - CH_NAME=clickhouse
-        - CH_HOST=http://localhost:8123
-        - CH_LOGIN=default
-        - CH_PASSWORD=12345
+    image: spoonest/clickhouse-tabix-web-client
+    ports:
+      - "8080:80"
+    depends_on:
+      - clickhouse
+    restart: unless-stopped
+    environment:
+      - CH_NAME=clickhouse
+      - CH_HOST=http://localhost:8123
+      - CH_LOGIN=default
+      - CH_PASSWORD=12345
+
+networks:
+  my_network:
+    driver: bridge
