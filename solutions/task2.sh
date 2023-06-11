@@ -3,8 +3,6 @@ echo Step 1/4: extracting public download link...
 curl https://cloud-api.yandex.net/v1/disk/public/resources/download\?public_key\=https://yadi.sk/d/ARJShvDUgazjMQ >> download_link.json
 DOWNLOAD_LINK="$(cat download_link.json | grep -o 'http[s]*:[^"]*')"
 
-
-
 echo \\n
 echo Step 2/4: start downloading data.json ...
 curl -L $DOWNLOAD_LINK > ./clickhouse_data/user_files/data.json
