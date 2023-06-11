@@ -12,8 +12,8 @@ services:
     volumes:
       - ./clickhouse_data:/var/lib/clickhouse/
     environment:
-      - CLICKHOUSE_USER=${CLICKHOUSE_USER}
-      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=12345
     networks:
       - my_network
 
@@ -27,8 +27,8 @@ services:
     environment:
       - CH_NAME=clickhouse
       - CH_HOST=http://localhost:8123
-      - CH_LOGIN=${CLICKHOUSE_USER}
-      - CH_PASSWORD=${CLICKHOUSE_PASSWORD}
+      - CH_LOGIN=default
+      - CH_PASSWORD=12345
 
 networks:
   my_network:
