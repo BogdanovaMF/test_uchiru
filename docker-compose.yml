@@ -1,16 +1,5 @@
 version: "3.0"
 services:
-
-  # json_load_job:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: json_load_job
-  #   volumes:
-  #     - ./clickhouse_data:/var/lib/clickhouse/
-  #   networks:
-  #     - my_network
-
   clickhouse:
     image: yandex/clickhouse-server
     ports:
@@ -22,10 +11,9 @@ services:
       retries: 16
     volumes:
       - ./clickhouse_data:/var/lib/clickhouse/
-      - ./solutions:/opt
     environment:
-      - CLICKHOUSE_USER=default
-      - CLICKHOUSE_PASSWORD=12345
+      - CLICKHOUSE_USER=${CLICKHOUSE_USER}
+      - CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD}
     networks:
       - my_network
 
@@ -39,8 +27,8 @@ services:
     environment:
       - CH_NAME=clickhouse
       - CH_HOST=http://localhost:8123
-      - CH_LOGIN=default
-      - CH_PASSWORD=12345
+      - CH_LOGIN=${CLICKHOUSE_USER}
+      - CH_PASSWORD=${CLICKHOUSE_PASSWORD}
 
 networks:
   my_network:
